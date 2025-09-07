@@ -1,0 +1,3 @@
+printStr hello world!
+
+//use 'printStr' to print strings and numbers and 'printCalc' to print the answer of a calculation
