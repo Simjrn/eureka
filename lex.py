@@ -52,7 +52,6 @@ class Lex:
                     tokens.append(f"NUM: {token}")
                 else: 
                     tokens.append(f"{token}")
-        print(tokens) 
         tokens.append("  ")
         tokens.append("  ")
         if tokens[0] == 'PRINT VAR':
