@@ -1,13 +1,6 @@
 import os
 import time
 
-def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-funcs = {
-    "clear": clear,
-}
-digits = '0123456789'
 
 def decode_file(file):
     boolean = {}
