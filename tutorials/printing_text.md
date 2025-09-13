@@ -29,3 +29,4 @@ would be?
   
   **LOREM IPSUM**
   
+[Next lesson: maths](https://github.com/Simjrn/eureka/blob/main/tutorials/numbers_and_operators.md)
