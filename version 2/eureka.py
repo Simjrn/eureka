@@ -115,5 +115,7 @@ while True:
         time.sleep(0.5)
         os.system('cls' if os.name == 'nt' else 'clear')
         break
+    elif command == 'check':
+        print("You have successfully installed eureka!")
     else:
         decode(command)
