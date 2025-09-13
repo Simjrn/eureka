@@ -28,5 +28,6 @@ would be?
   _Lorem ipsum_
   
   **LOREM IPSUM**
-  
+</details>
+
 [Next lesson: maths](https://github.com/Simjrn/eureka/blob/main/tutorials/numbers_and_operators.md)
