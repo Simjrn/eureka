@@ -1,6 +1,8 @@
 import os
 import time
+from errors import errors
 
+digits = '0123456789'
 
 def decode_file(file):
     boolean = {}
@@ -22,7 +24,7 @@ def decode_file(file):
         }
     for line in file:
         for token in line.split():
-            if token in operators and not line.endswith("?"):
+            if token in operators and not line.endswith("?") and not line.startswith("IF"):
                 if line in digits or digits:
                     line = line.replace(token, f'{operators[token]}')
                     print(eval(line))
@@ -43,6 +45,18 @@ def decode_file(file):
         elif line.startswith("getsS"):
             answer = input(line[6:])
             print("#=> " + answer)
+        elif line.startswith("getsInt"):
+            answer = int(input(line[8:]))
+            print(f"#=> {answer}")
+        elif line.startswith("IF"):
+            tor = line[3:]
+            eval(tor.replace('=', '==').replace('-<', '<=').replace('->', '>='))
+            if tor:
+                print("YYYYYYYYYYYYYYYYYYYYYYYYYYYY")
+                nxt = next(file)
+                decode_file(nxt)
+        else:
+            errors(line)
 
         
         
@@ -51,7 +65,8 @@ def decode_file(file):
 def decode(line):
     operators = {
         '+': '+', 
-        '-': '-', 
+        '-': '-',
+        '/=': '!=', 
         '*': '*',
         '/': '/',
         '--': '//',
@@ -62,17 +77,17 @@ def decode(line):
         '=': '==',
         '->': '>=',
         '-<': '<=',
-        'Pi': '3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610453266482',
+        'Pi': '3.141592653589793',
         'Π': '3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610453266482',
         }
     for token in line.split():
-        if token in operators:
+        if token in operators and not '<->' in line:
             if line in digits or digits:
                 line = line.replace(token, f' {operators[token]}')
                 print(eval(line))
         elif token == '<->':
             position = line.index(token)
-            x = line[:position].strip()
+            x = line[:position].strip().replace('/=', '!=').replace('=', '==').replace('-<', '<=').replace('->', '>=')
             y = line[position + 3:].strip()
             result: int = (x > y) - (x < y)
             print(result)
@@ -91,6 +106,8 @@ def decode(line):
     elif line.startswith("gets"):
         answer = input(line[5:])
         print(f"#=> {answer}")
+    else:
+        errors(line)
 
 os.system('cls' if os.name == 'nt' else 'clear')
 print('---------------------------------')
@@ -108,7 +125,13 @@ while True:
         time.sleep(0.5)
         os.system('cls' if os.name == 'nt' else 'clear')
         break
-    elif command == 'check':
-        print("You have successfully installed eureka!")
+    elif command == 'clear':
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print('---------------------------------')
+        print('Eureka!')
+        print('----------------------------------\n')
+        print('Type \'FILE <filename>\' to run an file.\nOtherwise type in commands directly and see their output.\n')
+    elif command == 'help':
+        print('Commands:\nFILE <filename> - Runs a file\nclear - Clears the screen\n@exit - Exits the program\nhelp - Shows this message\nOther commands are in the \'turials\' folder.')
     else:
         decode(command)
