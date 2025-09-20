@@ -10,6 +10,10 @@ The main differences are:
 4. To check if 2 values are equal, instead of `==`, it is just `=`
 5. To check if a value is equal or greater than another value, use `->`
 6. To check if a value is equal or greater than another value, use `-<`
-7. The spaceship operator, instead of being '<=>' like it is in other language, is `<->`. Just like in other languages, it returns -1, 0, 2.
+7. The spaceship operator, instead of being `<=>` like it is in other language, is `<->`. Just like in other languages, it returns -1, 0, 2.
 
 Note that True is greater than False, and infinity is represented by 'inf'
+
+### Note that I'm still working on error messages
+
+[next lesson](printing_text.md)
